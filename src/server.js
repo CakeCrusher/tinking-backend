@@ -36,12 +36,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require('dotenv').config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var _a = require('./utils'), makeTinkProcess = _a.makeTinkProcess, getFeedback = _a.getFeedback, fetchGraphQL = _a.fetchGraphQL;
 var app = express();
 var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
+app.post('/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, res.json({ hello: "hi" })];
+    });
+}); });
 app.post('/submitFeedback', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var feedbackInput, tinkID, description, steps, feedbackID;
     return __generator(this, function (_a) {
@@ -75,26 +81,6 @@ app.post('/makeTink', function (req, res) { return __awaiter(void 0, void 0, voi
                 tinkID = _a.sent();
                 return [2 /*return*/, res.json({
                         id: tinkID
-                    })];
-        }
-    });
-}); });
-app.post('/incrementTinkUse', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, FETCH_TINK_QUERY, oldTink, TINK_COUNT_MUTATION, updatedTink;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                id = req.body.input.id;
-                FETCH_TINK_QUERY = "query{\n    Tink(where: {id: {_eq: \"" + id + "\"}}) {\n      usedCount\n    }\n  }";
-                return [4 /*yield*/, fetchGraphQL(FETCH_TINK_QUERY)];
-            case 1:
-                oldTink = _a.sent();
-                TINK_COUNT_MUTATION = "mutation{\n    update_Tink(_set: {usedCount: " + (oldTink.data.Tink[0].usedCount + 1) + "}, where: {id: {_eq: \"" + id + "\"}}) {\n      returning {\n        id\n        usedCount\n      }\n    }\n  }";
-                return [4 /*yield*/, fetchGraphQL(TINK_COUNT_MUTATION)];
-            case 2:
-                updatedTink = _a.sent();
-                return [2 /*return*/, res.json({
-                        id: updatedTink.data.update_Tink.returning[0].id,
                     })];
         }
     });

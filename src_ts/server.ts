@@ -17,6 +17,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+app.post('/test', async (req: Request, res: Response) => {
+  return res.json({hello: "hi"})
+})
+
 app.post('/submitFeedback', async (req: Request, res: Response) => {  
   const feedbackInput = req.body.input.feedback
   let tinkID;
