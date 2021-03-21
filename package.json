@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "node ./src/server.js",
+    "start": "nodemon ./src/server.js",
     "watch": "nodemon ./src/server.js",
     "watch:build": "tsc --watch",
     "watch:server": "nodemon './src/server.js' --watch './src'"
@@ -18,12 +18,12 @@
     "express": "4.16.4",
     "node-fetch": "^2.6.0",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "nodemon": "^1.18.4"
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.8",
     "esm": "^3.2.25",
-    "nodemon": "^1.18.4"
   },
   "keywords": []
 }
