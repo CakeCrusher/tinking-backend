@@ -5,7 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "nodemon ./src/server.js",
+    "start": "node ./src/server.js",
+    "watch": "nodemon ./src/server.js",
     "watch:build": "tsc --watch",
     "watch:server": "nodemon './src/server.js' --watch './src'"
   },
