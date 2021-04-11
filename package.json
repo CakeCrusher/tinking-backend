@@ -6,8 +6,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "nodemon ./src/server.js",
-    "watch": "nodemon ./src/server.js",
-    "watch:build": "tsc --watch",
+    "compile": "tsc && node src/server.js",
+    "watch": "nodemon -e ts --exec \"npm run compile\"",
     "watch:server": "nodemon './src/server.js' --watch './src'"
   },
   "dependencies": {

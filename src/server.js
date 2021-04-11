@@ -41,11 +41,11 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var _a = require('./utils'), makeTinkProcess = _a.makeTinkProcess, getFeedback = _a.getFeedback, fetchGraphQL = _a.fetchGraphQL;
 var app = express();
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 4000;
 app.use(bodyParser.json());
-app.post('/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get('/testt', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        return [2 /*return*/, res.json({ hello: "hi" })];
+        return [2 /*return*/, res.send('hi')];
     });
 }); });
 app.post('/submitFeedback', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
