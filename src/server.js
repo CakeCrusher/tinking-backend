@@ -43,9 +43,9 @@ var _a = require('./utils'), makeTinkProcess = _a.makeTinkProcess, getFeedback =
 var app = express();
 var PORT = process.env.PORT || 4000;
 app.use(bodyParser.json());
-app.get('/testt', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.post('/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        return [2 /*return*/, res.send('hi')];
+        return [2 /*return*/, res.json({ hello: "hi" })];
     });
 }); });
 app.post('/submitFeedback', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -83,6 +83,18 @@ app.post('/makeTink', function (req, res) { return __awaiter(void 0, void 0, voi
                         id: tinkID
                     })];
         }
+    });
+}); });
+var generateScript = require('./scriptGenerator');
+app.post('/scrapeTink', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var steps, scriptGenerated;
+    return __generator(this, function (_a) {
+        console.log('=========RB========\n' + req.body + '\n=========RB========');
+        console.log('=========S========\n' + req.body.input.steps + '\n=========S========');
+        steps = req.body.input.steps;
+        scriptGenerated = generateScript(steps, 'puppeteer');
+        console.log('=========GS========\n' + scriptGenerated + '\n=========GS========');
+        return [2 /*return*/];
     });
 }); });
 app.listen(PORT);

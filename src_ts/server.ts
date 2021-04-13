@@ -46,6 +46,14 @@ app.post('/makeTink', async (req: Request, res: Response) => {
     id: tinkID
   })
 })
+const generateScript = require('./scriptGenerator')
+app.post('/scrapeTink', async (req: Request, res: Response) => {
+  console.log('=========RB========\n'+req.body+'\n=========RB========')
+  console.log('=========S========\n'+req.body.input.steps+'\n=========S========')
+  const steps: Step[] = req.body.input.steps
+  const scriptGenerated = generateScript(steps, 'puppeteer')
+  console.log('=========GS========\n'+scriptGenerated+'\n=========GS========')
+})
 
 app.listen(PORT);
 
