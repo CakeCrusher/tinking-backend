@@ -85,13 +85,12 @@ app.post('/makeTink', function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
-var generateScript = require('./scriptGenerator');
+var generateScript = require('./scriptGenerator').generateScript;
 app.post('/scrapeTink', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var steps, scriptGenerated;
     return __generator(this, function (_a) {
-        console.log('=========RB========\n' + req.body + '\n=========RB========');
-        console.log('=========S========\n' + req.body.input.steps + '\n=========S========');
-        steps = req.body.input.steps;
+        console.log('=========RB========\n' + JSON.stringify(req.body) + '\n=========RB========');
+        steps = req.body;
         scriptGenerated = generateScript(steps, 'puppeteer');
         console.log('=========GS========\n' + scriptGenerated + '\n=========GS========');
         return [2 /*return*/];
